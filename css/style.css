@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    --light-blue: rgb(0, 115, 255);
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background: #f1f1f1;
+}
+
+header {
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0,0,0,.5);
+    text-align: center;
+    padding: 15px 0;
+}
+
+header .sub-heading {
+    color: var(--light-blue) ;
+}
+
+.section {
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0,0,0,.3);
+    margin: 35px auto 0;  
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-section {
+    width: 30%; 
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+.form-group input{
+    width: 100%;
+    font-size: 1.001rem;
+}
+
+.form-section .subim-div {
+    text-align: center;
+}
+
+.form-section input[type="submit"] {
+    margin-top: 5px;
+    width: 150px;
+    padding: 5px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: var(--light-blue);
+    color: #fff;
+    font-size: 1.01rem;
+    border-radius: 5px;
+}
+
+.table-section {
+    width: 70%;
+}
+
+.table-section table{
+    width: 100%;
+}
+.table-section table,thead,tbody,tr,th,td{
+    border: 1px solid rgb(0,0,0,.3);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px;
+}
+
+@media (max-width: 800px) {
+    .form-section,.table-section {
+        margin: 15px auto;
+        width: 95%;
+    }    
+}
