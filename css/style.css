@@ -73,9 +73,35 @@ header .sub-heading {
     padding: 10px;
 }
 
+.button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 1.001rem;
+    cursor: pointer;
+}
+
+.update-button {
+    background-color: rgb(4, 136, 118);
+    margin-right: 5px;
+    color: #fff;
+}
+
+.delete-button {
+    background-color: deeppink;
+    color: #fff;
+}
+
+
 @media (max-width: 800px) {
     .form-section,.table-section {
         margin: 15px auto;
         width: 95%;
     }    
+    .update-button {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
 }

@@ -1,0 +1,70 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: grid;
+    place-items: center;
+}
+.modal .modal-box {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    width: 30%;
+    border-radius: 10px;
+    padding: 15px 5px;
+    animation: popof .25s;
+}
+.modal .modal-box .header {
+    text-align: center;
+}
+
+.modal .modal-box .body {
+    padding: 15px 5px;
+    font-weight: 600;
+}
+
+.modal .modal-box .footer {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.modal .modal-box .footer button {
+    outline: none;
+    border: none;
+    width: 100px;
+    padding: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    background: transparent;
+    text-transform: uppercase;
+}
+
+.modal .modal-box .footer .yes-button {
+    background-color: var(--light-blue);
+    color: #fff;
+}
+
+.modal .modal-box .footer .no-button {
+    border: 1px solid var(--light-blue);
+}
+
+.display-none {
+    display: none;
+}
+
+@keyframes popof {
+    from {
+        scale: 0;
+        opacity: 0;
+    }
+
+    to{
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+@media (max-width: 800px) {
+    .modal .modal-box {
+        width: 95%;
+    }
+}
