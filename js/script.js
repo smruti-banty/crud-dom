@@ -1,7 +1,13 @@
-const allBook = [];
+let allBook = [];
 const form = document.forms[0];
-const tBody = document.querySelector('.table-section tbody')
+const tBody = document.querySelector('.table-section tbody');
+const modal = document.querySelector('.modal');
+
 form.addEventListener('submit', onSubmit);
+
+function toggleModal() {
+    modal.classList.toggle('display-none');
+}
 
 function onSubmit(event) {
     event.preventDefault();
@@ -50,16 +56,24 @@ function renderTable(object) {
 }
 
 function onUpdate(event) {
-    
+
 }
 
 function onDelete(event) {
-    if(confirm('Do you want to remove this')) {
+    toggleModal();
+    
+    modal.querySelector('.yes-button').addEventListener('click', () => {
         const deleteButton = event.target;
         const bookId = deleteButton.dataset.bookId;
 
         allBook = allBook.filter(book => book.bookId != bookId);
 
-        
-    }   
+        deleteButton.parentElement.parentElement.remove();
+
+        toggleModal();
+    });
+
+    modal.querySelector('.no-button').addEventListener('click', () => {
+        toggleModal();
+    });
 }

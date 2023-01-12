@@ -80,6 +80,7 @@ header .sub-heading {
     width: 100px;
     border-radius: 5px;
     font-size: 1.001rem;
+    cursor: pointer;
 }
 
 .update-button {
