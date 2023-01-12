@@ -19,12 +19,27 @@ function onSubmit(event) {
         obj[input.name] = input.value;
     });
 
-    allBook.push(obj);
-    renderTable(obj);
+    const hiddenField = form.querySelector('input[type="hidden"]');
+    const hiddenValue = parseInt(hiddenField.value);
+
+    if (hiddenValue === -1) {
+        allBook.push(obj);
+        renderTable(obj);
+    } else {
+        const oldBookId = allBook[hiddenValue].bookId;
+        hiddenField.value = -1;
+
+        allBook[hiddenValue] = obj;
+        updateTable(oldBookId, obj);
+    }
+    
+    form.reset();
+    form.querySelector('input[type="hidden"]').value = -1;
 }
 
 function renderTable(object) {
     const tr = document.createElement('tr');
+    tr.setAttribute('data-bookid', object.bookId);
     const td = document.createElement('td');
     const updateButton = document.createElement('button');
     const deleteButton = document.createElement('button');
@@ -56,15 +71,28 @@ function renderTable(object) {
 }
 
 function onUpdate(event) {
+    const updateButton = event.target;
+    const bookId = updateButton.dataset.bookid;
+
+    const bookIndex = allBook.findIndex(book => book.bookId == bookId);
+    const oldDetails = allBook[bookIndex];
+
+    const allInput = form.querySelectorAll('input[type="text"]');
+
+    allInput.forEach(input => {
+        input.value = oldDetails[input.name];
+    })
+
+    form.querySelector('input[type="hidden"]').value = bookIndex;
 
 }
 
 function onDelete(event) {
     toggleModal();
-    
+
     modal.querySelector('.yes-button').addEventListener('click', () => {
         const deleteButton = event.target;
-        const bookId = deleteButton.dataset.bookId;
+        const bookId = deleteButton.dataset.bookid;
 
         allBook = allBook.filter(book => book.bookId != bookId);
 
@@ -76,4 +104,19 @@ function onDelete(event) {
     modal.querySelector('.no-button').addEventListener('click', () => {
         toggleModal();
     });
+}
+
+function updateTable(oldBookId, newBook) {
+    const allTr = tBody.querySelectorAll('tr');
+    const rowToUpdate = Array.from(allTr).find(tr => tr.dataset.bookid == oldBookId);
+    rowToUpdate.dataset.bookid = newBook.bookId;
+    const allTd = rowToUpdate.querySelectorAll('td');
+
+    const allBtn = allTd[0].querySelectorAll('button');
+    allBtn.forEach(btn => btn.dataset.bookid = newBook.bookId)
+
+    allTd[1].innerText = newBook.bookId;
+    allTd[2].innerText = newBook.bookName;
+    allTd[3].innerText = newBook.bookAuthor;
+
 }
